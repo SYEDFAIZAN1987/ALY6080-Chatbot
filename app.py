@@ -1,5 +1,5 @@
 import streamlit as st
-from langchain.document_loaders.pdf import PyPDFLoader
+from langchain.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.vectorstores.chroma import Chroma
 from get_embedding_function import get_embedding_function
