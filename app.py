@@ -9,8 +9,7 @@ import os
 CHROMA_PATH = "chroma"
 PROJECT_REPORT_PATH = r"C:\Users\sfaiz\OneDrive\Desktop\Syed_Faizan_Resume.pdf"
 
-# Load environment variables from .env file
-load_dotenv()
+
 
 # Preprocess and store the report in Chroma (only runs once)
 @st.cache_resource
