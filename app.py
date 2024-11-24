@@ -1,15 +1,19 @@
 import streamlit as st
 from langchain.document_loaders import PyPDFLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores.chroma import Chroma
-from embedding_utils import get_embedding_function
+from langchain.embeddings import HuggingFaceEmbeddings
 import os
 
 # Define paths
 CHROMA_PATH = "chroma"
 PROJECT_REPORT_PATH = r"C:\Users\sfaiz\OneDrive\Desktop\Syed_Faizan_Resume.pdf"
 
-
+# Embedding function using Hugging Face model
+@st.cache_resource
+def get_embedding_function():
+    # Use Hugging Face's all-MiniLM-L6-v2 model for embeddings
+    return HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
 # Preprocess and store the report in Chroma (only runs once)
 @st.cache_resource
@@ -58,9 +62,9 @@ if st.button("Search"):
         if results:
             st.success(f"Found {len(results)} results!")
             for result in results:
-                st.write(f"**Source:** {result.metadata.get('source')}")
-                st.write(f"**Page:** {result.metadata.get('page')}")
-                st.write(f"**Text:** {result.page_content}")
+                st.write(f"**Source:** {result.metadata.get('source')}")  # File name
+                st.write(f"**Page:** {result.metadata.get('page')}")      # Page number
+                st.write(f"**Text:** {result.page_content}")              # Chunk text
                 st.write("---")
         else:
             st.warning("No results found.")
