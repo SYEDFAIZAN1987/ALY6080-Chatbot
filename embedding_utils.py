@@ -1,5 +1,9 @@
 from langchain.embeddings import OpenAIEmbeddings
+from dotenv import load_dotenv
 import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 def get_embedding_function():
     # Ensure your OpenAI API key is set as an environment variable
