@@ -2,12 +2,12 @@ import streamlit as st
 from langchain.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.vectorstores.chroma import Chroma
-from get_embedding_function import get_embedding_function
+from embedding_utils import get_embedding_function
 import os
 
 # Define paths
 CHROMA_PATH = "chroma"
-PROJECT_REPORT_PATH = r"C:\Users\sfaiz\OneDrive\Desktop\ALY6080_Module6_Report_Group1\Uploads for Module 7\ALY_6080_Experential_learning_Group_1_Module_7_Capstone___Project_Proposal_Mid_Term_Presentation.pdf"
+PROJECT_REPORT_PATH = r"C:\Users\sfaiz\OneDrive\Desktop\Syed_Faizan_Resume.pdf"
 
 # Preprocess and store the report in Chroma (only runs once)
 @st.cache_resource
