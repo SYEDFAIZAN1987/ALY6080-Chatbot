@@ -1,16 +1,10 @@
-from langchain.embeddings import OpenAIEmbeddings
-from dotenv import load_dotenv
-import os
-
-# Load environment variables from .env file
-load_dotenv()
+from langchain.embeddings import HuggingFaceEmbeddings
 
 def get_embedding_function():
-    # Ensure your OpenAI API key is set as an environment variable
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise ValueError("Please set the OPENAI_API_KEY environment variable.")
-    
-    embeddings = OpenAIEmbeddings(openai_api_key=api_key)
+    """
+    Returns an embedding function using Hugging Face's all-MiniLM-L6-v2 model.
+    """
+    # Initialize Hugging Face embeddings using a pre-trained sentence-transformers model
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     return embeddings
 
